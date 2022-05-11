@@ -2,6 +2,10 @@
 #include <vector>
 using namespace std;
 
+vector<int> flatten(vector<vector<vector<int>>> matrix3d);
+void print3dMatrix(vector<vector<vector<int>>> matrix3d);
+void print1dVector(vector<int> matrix1d);
+
 int main()
 {
 
@@ -18,7 +22,38 @@ int main()
 
     print3dMatrix(matrix3d);
     vector<int> flattend = flatten(matrix3d);
-    print1dMatrix(flattend);
+    print1dVector(flattend);
+
+    char input;
+    int n = 0, m = 0, p = 0;
+
+    do
+    {
+        cout << "Enter number of layers: \n";
+        cin >> n;
+        cout << "Enter number of rows: \n";
+        cin >> m;
+        cout << "Enter number of columns: \n";
+        cin >> p;
+        vector<vector<vector<int>>> inputMatrix3d(n, vector<vector<int>>(m, vector<int>(p)));
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                for (int k = 0; k < p; k++)
+                {
+                    cout << "Enter element number(" + to_string(i * m * p + j * p + k) + ")\n";
+                    cin >> inputMatrix3d[i][j][k];
+                }
+            }
+        }
+        print3dMatrix(inputMatrix3d);
+        flattend = flatten(inputMatrix3d);
+        print1dVector(flattend);
+        cout << "enter 'q' to quit or any other key to continue: ";
+        cin >> input;
+    } while (input != 'q');
+
     return 0;
 }
 
@@ -62,7 +97,7 @@ void print3dMatrix(vector<vector<vector<int>>> matrix3d)
     }
 }
 
-void print1dMatrix(vector<int> matrix1d)
+void print1dVector(vector<int> matrix1d)
 {
     int q = matrix1d.size();
     for (int i = 0; i < q; i++)

@@ -1,12 +1,13 @@
 ## Description
 
-A 3D-1D (Integer - String - Double - Arbitary Input) Matrix Flatten written in java.
-The program runs an arbitary example at the beginning then ask user for dimensions of matrix , type and then data.
+A 3D-1D Matrix Flatten written in c++.
+The program runs an arbitary example at the beginning then ask user for dimensions of input matrix and data.
 
 ## Run Program
 
 ```
-java flatten.java
+g++ flatten.cpp
+./a.exe
 ```
 
 ## Screenshots
