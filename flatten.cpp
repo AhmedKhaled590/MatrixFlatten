@@ -2,6 +2,26 @@
 #include <vector>
 using namespace std;
 
+int main()
+{
+
+    vector<vector<vector<int>>> matrix3d = {
+        {{1, 2, 3},
+         {4, 5, 6},
+         {7, 8, 9}},
+        {{10, 11, 12},
+         {13, 14, 15},
+         {16, 17, 18}},
+        {{19, 20, 21},
+         {22, 23, 24},
+         {25, 26, 27}}};
+
+    print3dMatrix(matrix3d);
+    vector<int> flattend = flatten(matrix3d);
+    print1dMatrix(flattend);
+    return 0;
+}
+
 vector<int> flatten(vector<vector<vector<int>>> matrix3d)
 {
     int n = matrix3d.size();
@@ -50,24 +70,4 @@ void print1dMatrix(vector<int> matrix1d)
         cout << matrix1d[i] << " ";
     }
     cout << endl;
-}
-
-int main()
-{
-
-    vector<vector<vector<int>>> matrix3d = {
-        {{1, 2, 3},
-         {4, 5, 6},
-         {7, 8, 9}},
-        {{10, 11, 12},
-         {13, 14, 15},
-         {16, 17, 18}},
-        {{19, 20, 21},
-         {22, 23, 24},
-         {25, 26, 27}}};
-
-    print3dMatrix(matrix3d);
-    vector<int> flattend = flatten(matrix3d);
-    print1dMatrix(flattend);
-    return 0;
 }
