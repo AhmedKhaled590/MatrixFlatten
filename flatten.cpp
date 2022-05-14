@@ -1,14 +1,22 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <typeinfo>
 using namespace std;
 
+#define assert(x, message)                               \
+    if (!(x))                                            \
+    {                                                    \
+        cout << "Assertion failed: " << message << endl; \
+    }
+
+void inputSize(int &n, string identifier);
 vector<int> flatten(vector<vector<vector<int>>> matrix3d);
 void print3dMatrix(vector<vector<vector<int>>> matrix3d);
 void print1dVector(vector<int> matrix1d);
 
 int main()
 {
-
     vector<vector<vector<int>>> matrix3d = {
         {{1, 2, 3},
          {4, 5, 6},
@@ -29,12 +37,10 @@ int main()
 
     do
     {
-        cout << "Enter number of layers: \n";
-        cin >> n;
-        cout << "Enter number of rows: \n";
-        cin >> m;
-        cout << "Enter number of columns: \n";
-        cin >> p;
+        inputSize(n, "layers");
+        inputSize(m, "rows");
+        inputSize(p, "columns");
+
         vector<vector<vector<int>>> inputMatrix3d(n, vector<vector<int>>(m, vector<int>(p)));
         for (int i = 0; i < n; i++)
         {
@@ -55,6 +61,17 @@ int main()
     } while (input != 'q');
 
     return 0;
+}
+
+void inputSize(int &n, string identifier)
+{
+    do
+    {
+        cout << "Enter number of " + identifier + ": \n";
+        cin >> n;
+        assert(n > 0, "Number of " + identifier + " must be greater than 0");
+
+    } while (n <= 0);
 }
 
 vector<int> flatten(vector<vector<vector<int>>> matrix3d)
